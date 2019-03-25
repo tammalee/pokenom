@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/tammalee/pokenom/issues"
   },
-  "homepage": "https://github.com/tammalee/pokenom#readme"
+  "homepage": "https://github.com/tammalee/pokenom#readme",
+  "devDependencies": {
+    "webpack": "^4.29.6"
+  }
 }
