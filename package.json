@@ -21,7 +21,8 @@
     "url": "https://github.com/tammalee/pokenom/issues"
   },
   "homepage": "https://github.com/tammalee/pokenom#readme",
-  "devDependencies": {
-    "webpack": "^4.29.6"
+  "devDependencies": {},
+  "dependencies": {
+    "pokeapi-js-wrapper": "^1.1.1"
   }
 }
