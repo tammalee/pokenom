@@ -1,0 +1,7 @@
+@import '../node_modules/bulma/css/bulma.css';
+
+#app {
+    max-width: 500px;
+    margin-top: 30px;
+}
+  

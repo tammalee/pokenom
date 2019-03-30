@@ -21,8 +21,11 @@
     "url": "https://github.com/tammalee/pokenom/issues"
   },
   "homepage": "https://github.com/tammalee/pokenom#readme",
-  "devDependencies": {},
+  "devDependencies": {
+    "sass": "^1.17.3"
+  },
   "dependencies": {
+    "bulma": "^0.7.4",
     "pokeapi-js-wrapper": "^1.1.1"
   }
 }
