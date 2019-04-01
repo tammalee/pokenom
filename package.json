@@ -26,6 +26,8 @@
   },
   "dependencies": {
     "bulma": "^0.7.4",
-    "pokeapi-js-wrapper": "^1.1.1"
+    "lib": "^4.0.2",
+    "pokeapi-js-wrapper": "^1.1.1",
+    "src": "^1.1.2"
   }
 }
