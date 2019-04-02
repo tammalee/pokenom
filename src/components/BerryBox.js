@@ -4,6 +4,5 @@ export default class BerryBox {
     static render() {
         let currentBerries = Berries.shakeBerryBox();
         
-
     }
 }
