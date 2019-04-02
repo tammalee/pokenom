@@ -14,7 +14,7 @@ export default class Helpers {
     static getRandomFromArray( howMany, sourceArray ) {
         let randomPick = [];
         for( let i = 0; i < howMany; i++ ) {
-            
+            randomPick.push( sourceArray[Math.floor(Math.random()*sourceArray.length)] );
         }
         return randomPick;
     }

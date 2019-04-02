@@ -7,34 +7,10 @@ export default class Berries {
      * @return {void} Nothing to return
      */
     static setBerryNames() {
-        const berriesData = config.pdex.getBerriesList()
-            // .then( allBerries => allBerries.results.map( berry => berry.name ) )
-            // .then( berryNames => {
-            //     localStorage.setItem( config.lsBerryNames, JSON.stringify( berryNames ) );
-            // });
+        const berriesList = config.pdex.getBerriesList()
             .then( berryNames => {
                 localStorage.setItem( config.lsBerryNames, JSON.stringify( berryNames.results ) );
             });
-            // .then()//get the berryDetails
-            // .then() //get the itemDetails
-            // .then(); //PUT THAT SHIT TOGETHER
-
-
-    //     .then( function(allBerries) {
-    //         allBerries.results.map( berryData => {
-    //             const berryDetails = config.pdex.getBerryByName(berryData.name)
-    //             .then( function( berryDetail ) {
-    //                 const berryImage = config.pdex.getItemByName(berryDetail.item.name)
-    //                 .then( function( berryItem ) {
-    //                     berry.name = berryData.name;
-    //                     berry.flavors = berryDetail.flavors;
-    //                     berry.sprites = berryItem.sprites;
-    //                     berry.names = berryItem.names;
-    //                     return berry;
-    //                 });
-    //             });
-    //         });            
-    //     } );
     }
 
     /**
@@ -53,12 +29,38 @@ export default class Berries {
         return berryNames;
     }
     
+    static getBerryDetails( berry ) {
+        const berryDetails = config.pdex.getBerryByName( berry.name )
+        .then( berryDetails => {
+            berry.flavors = berryDetails.flavors;
+            berry.item    = berryDetails.item;
+            return berry;
+         } )
+         .then( berry => {
+            berry.itemDetails  = this.getBerrySprite( berry );
+            return berry;
+         });
+         return berry;
+    }
+
+    static getBerrySprite( berry ) {
+        let berryItem = config.pdex.getItemByName( berry.item.name )
+        .then( itemDetails => {
+            berry.names   = itemDetails.names;
+            berry.sprites = itemDetails.sprites;
+            return berry;
+        });
+        return berry;
+    }
 
     static shakeBerryBox() {
-        let berryListToFetch = Helpers.getRandomFromArray( config.numBerries, this.getBerryNames ),
+        let berryListToFetch = Helpers.getRandomFromArray( config.numBerries, this.getBerryNames() ),
             berryBox = [];
-        //shaking the berry box gets you a new selection of berries
-        //config.numBerries is the number of berries to return
-                
+        berryListToFetch.map( berry => {
+            berry = this.getBerryDetails( berry );
+            berryBox.push( berry );
+        });
+
+        return berryBox;
     }
 }

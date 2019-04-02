@@ -4993,7 +4993,9 @@ function () {
     value: function getRandomFromArray(howMany, sourceArray) {
       var randomPick = [];
 
-      for (var i = 0; i < howMany; i++) {}
+      for (var i = 0; i < howMany; i++) {
+        randomPick.push(sourceArray[Math.floor(Math.random() * sourceArray.length)]);
+      }
 
       return randomPick;
     }
@@ -5038,31 +5040,9 @@ function () {
      * @return {void} Nothing to return
      */
     value: function setBerryNames() {
-      var berriesData = _config.default.pdex.getBerriesList() // .then( allBerries => allBerries.results.map( berry => berry.name ) )
-      // .then( berryNames => {
-      //     localStorage.setItem( config.lsBerryNames, JSON.stringify( berryNames ) );
-      // });
-      .then(function (berryNames) {
+      var berriesList = _config.default.pdex.getBerriesList().then(function (berryNames) {
         localStorage.setItem(_config.default.lsBerryNames, JSON.stringify(berryNames.results));
-      }); // .then()//get the berryDetails
-      // .then() //get the itemDetails
-      // .then(); //PUT THAT SHIT TOGETHER
-      //     .then( function(allBerries) {
-      //         allBerries.results.map( berryData => {
-      //             const berryDetails = config.pdex.getBerryByName(berryData.name)
-      //             .then( function( berryDetail ) {
-      //                 const berryImage = config.pdex.getItemByName(berryDetail.item.name)
-      //                 .then( function( berryItem ) {
-      //                     berry.name = berryData.name;
-      //                     berry.flavors = berryDetail.flavors;
-      //                     berry.sprites = berryItem.sprites;
-      //                     berry.names = berryItem.names;
-      //                     return berry;
-      //                 });
-      //             });
-      //         });            
-      //     } );
-
+      });
     }
     /**
      * Fetches berry names from LocalStorage
@@ -5085,12 +5065,45 @@ function () {
       return berryNames;
     }
   }, {
+    key: "getBerryDetails",
+    value: function getBerryDetails(berry) {
+      var _this = this;
+
+      var berryDetails = _config.default.pdex.getBerryByName(berry.name).then(function (berryDetails) {
+        berry.flavors = berryDetails.flavors;
+        berry.item = berryDetails.item;
+        return berry;
+      }).then(function (berry) {
+        berry.itemDetails = _this.getBerrySprite(berry);
+        return berry;
+      });
+
+      return berry;
+    }
+  }, {
+    key: "getBerrySprite",
+    value: function getBerrySprite(berry) {
+      var berryItem = _config.default.pdex.getItemByName(berry.item.name).then(function (itemDetails) {
+        berry.names = itemDetails.names;
+        berry.sprites = itemDetails.sprites;
+        return berry;
+      });
+
+      return berry;
+    }
+  }, {
     key: "shakeBerryBox",
     value: function shakeBerryBox() {
-      var berryListToFetch = _Helpers.default.getRandomFromArray(_config.default.numBerries, this.getBerryNames),
-          berryBox = []; //shaking the berry box gets you a new selection of berries
-      //config.numBerries is the number of berries to return
+      var _this2 = this;
 
+      var berryListToFetch = _Helpers.default.getRandomFromArray(_config.default.numBerries, this.getBerryNames()),
+          berryBox = [];
+
+      berryListToFetch.map(function (berry) {
+        berry = _this2.getBerryDetails(berry);
+        berryBox.push(berry);
+      });
+      return berryBox;
     }
   }]);
 
@@ -5168,7 +5181,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53630" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62451" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
