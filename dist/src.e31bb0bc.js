@@ -5111,7 +5111,67 @@ function () {
 }();
 
 exports.default = Berries;
-},{"./config":"lib/config.js","./Helpers":"lib/Helpers.js"}],"index.js":[function(require,module,exports) {
+},{"./config":"lib/config.js","./Helpers":"lib/Helpers.js"}],"components/BerryBox.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _Berries = _interopRequireDefault(require("../lib/Berries"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var BerryBox =
+/*#__PURE__*/
+function () {
+  function BerryBox() {
+    _classCallCheck(this, BerryBox);
+  }
+
+  _createClass(BerryBox, null, [{
+    key: "render",
+    value: function render() {
+      this.doShakeBox();
+    }
+  }, {
+    key: "doShakeBox",
+    value: function doShakeBox() {
+      var berryBox = document.querySelector('.berry-box'),
+          currentBerries = document.querySelectorAll('.berry'),
+          newBerries = _Berries.default.shakeBerryBox();
+
+      var counter = 0;
+      console.log('berryBox: ', berryBox);
+      console.log('newBerries: ', newBerries);
+      console.log('currentBerries :', currentBerries);
+      berryBox.classList.add('shake-berry');
+      currentBerries.forEach(function (berry) {
+        berry.attributes.src.value = newBerries[counter].sprites;
+        berry.attributes.alt.value = newBerries[counter].name;
+        counter++;
+      });
+    }
+  }, {
+    key: "setEventListeners",
+    value: function setEventListeners() {
+      var shakeBox = document.querySelector('#jsShakeBox');
+      shakeBox.addEventListener("click", doShakeBox, false);
+    }
+  }]);
+
+  return BerryBox;
+}();
+
+exports.default = BerryBox;
+},{"../lib/Berries":"lib/Berries.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5122,6 +5182,8 @@ exports.default = void 0;
 var _config = _interopRequireDefault(require("./lib/config"));
 
 var _Berries = _interopRequireDefault(require("./lib/Berries"));
+
+var _BerryBox = _interopRequireDefault(require("./components/BerryBox"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5145,7 +5207,9 @@ function () {
      * init - Initialize the app
      * @return {void} Not meant to return
      */
-    value: function init() {}
+    value: function init() {
+      _BerryBox.default.render();
+    }
   }]);
 
   return App;
@@ -5153,7 +5217,7 @@ function () {
 
 exports.default = App;
 App.init();
-},{"./lib/config":"lib/config.js","./lib/Berries":"lib/Berries.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./lib/config":"lib/config.js","./lib/Berries":"lib/Berries.js","./components/BerryBox":"components/BerryBox.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -5181,7 +5245,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62451" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52829" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

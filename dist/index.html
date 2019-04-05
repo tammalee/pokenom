@@ -1,5 +1,7 @@
 <html>
   <head>
+      <script defer="" src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+      <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
       <link rel="stylesheet" href="/styles.8986bff4.css">
   <script src="/styles.8986bff4.js"></script></head>
 <body>
@@ -14,12 +16,59 @@
         </section>
       </header>
       <main id="app" class="container box has-text-centered">
-        <div class="content is-medium screen-welcome">
-          <p>Feed berries to pokémon to tame them.</p>
-          <p>Tame three pokémon to win!</p>
-          <p>But be warned, not all pokémon like all berries.</p>
+        <div id="screen-0">
+          <div class="content is-medium screen-welcome">
+            <p>Feed berries to pokémon to tame them.</p>
+            <p>Tame three pokémon to win!</p>
+            <p>But be warned, not all pokémon like all berries.</p>
+          </div>
+          <button class="button is-primary is-rounded jsGoScreen1">GO GO GO</button>
         </div>
-        <button class="button is-primary is-rounded">GO GO GO</button>
+        <div id="screen-1">
+            <div class="columns is-12">
+              <div class="column is-4">
+                <div id="poke-reaction">
+                  It's a MewTwo!
+                </div>
+              </div>
+              <div class="column is-3 is-offset-5">
+                <div id="score-box">
+                  <span class="icon">
+          <i class="fas fa-heart"></i>
+        </span> 04
+                </div>
+                <div id="score-box-target">
+                  Reach 8 <span class="icon">
+          <i class="fas fa-heart"></i>
+        </span>
+                </div>
+              </div>
+            </div>
+            <div class="pokemon-box box">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10043.png" alt="Mew Two Mega-X" class="pokemon-front">
+            </div>
+            <div class="columns berry-box box  canvas-weave">
+              <div class="column is-one-fifth">
+                <img class="berry" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/aspear-berry.png" alt="Aspear Berry">
+              </div>
+              <div class="column is-one-fifth">
+                <img class="berry" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rawst-berry.png" alt="Rawst Berry">
+              </div>
+              <div class="column is-one-fifth">
+                <img class="berry" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/chesto-berry.png" alt="Chesto Berry">
+              </div>
+              <div class="column is-one-fifth">
+                <img class="berry" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/cheri-berry.png" alt="Cheri Berry">
+              </div>
+              <div class="column is-one-fifth">
+                <img class="berry" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pecha-berry.png" alt="Pecha Berry">
+              </div>
+        
+            </div>
+            <div>
+              <button id="jsShakeBox" class="button is-small is-primary is-rounded">Shake Berry Box</button>
+            </div>
+          </div>
       </main>
       <footer class="footer">
         <div class="content has-text-centered">

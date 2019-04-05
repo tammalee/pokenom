@@ -1,5 +1,6 @@
 import config from './lib/config';
 import Berries from './lib/Berries';
+import BerryBox from './components/BerryBox';
 export default class App {
 
     /**
@@ -7,9 +8,7 @@ export default class App {
      * @return {void} Not meant to return
      */
     static init() {
-        
-        
-        
+        BerryBox.render();
     }
 }
 

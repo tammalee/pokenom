@@ -22,10 +22,11 @@
   },
   "homepage": "https://github.com/tammalee/pokenom#readme",
   "devDependencies": {
-    "sass": "^1.17.3"
+    "sass": "^1.17.4"
   },
   "dependencies": {
     "bulma": "^0.7.4",
+    "font-awesome": "^4.7.0",
     "lib": "^4.0.2",
     "pokeapi-js-wrapper": "^1.1.1",
     "src": "^1.1.2"
